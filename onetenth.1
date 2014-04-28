@@ -1,0 +1,93 @@
+.\" Copyright (c) 2014, Michael Sliczniak
+.\" All rights reserved.
+.\"
+.\" Redistribution and use in source and binary forms, with or without
+.\" modification, are permitted provided that the following conditions are
+.\" met:
+.\" 
+.\" 1. Redistributions of source code must retain the above copyright
+.\" notice, this list of conditions and the following disclaimer.
+.\" 
+.\" 2. Redistributions in binary form must reproduce the above copyright
+.\" notice, this list of conditions and the following disclaimer in the
+.\" documentation and/or other materials provided with the distribution.
+.\" 
+.\" THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
+.\" IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+.\" TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+.\" PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+.\" HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+.\" SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+.\" TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+.\" PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+.\" LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+.\" NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+.\" SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+.\"
+.\"       @(#)onetenth.1    0.1 (mzs) 4/23/14
+
+Game inspired by 2048 implemented in awk
+
+USAGE
+
+onetenth [ -s ] [ awkopts ]
+onetenth.awk [ awkopts ]
+
+-s screen mode
+
+awkopts:
+
+seed=""
+
+# must be lower case
+wkey="h"
+nkey="k"
+skey="j"
+ekey="l"
+qkey="q"
+
+rows=4
+cols=4
+
+syms="ABCDEFGHIJKLMNOPQRSTUVWXYZ*"
+high=11
+
+esym="." # empty symbol
+
+bl="" # blank lines
+
+cl="" # clear
+hi=""
+lo=""
+
+# must match from frist character on line
+comment="##"
+
+# if the first char is |, then it is a command to pipe into
+of=""
+
+EXAMPLES
+
+have upper case hilighted symbols
+
+onetenth esym="  ." syms="  a  b  c  d  e  f  g  h  i  j  k"
+
+use hex symbols
+
+onetenth esym="   ." syms="   1   2   4   8  10  20  40  80 100 200 400" bl='\n' cl='\n'
+
+emulate a hc (hardcopy) device that supports os (overstrike), the ^H is bs
+(backspace) and varies on system and shell how to enter - typically you can
+press ^V (control+v) and then ^H (control+h)
+
+onetenth esym="   ." syms="   2   4   8  16  32  64 128 256 512  1K  2K" hi='_^H' of="|/usr/bin/ul"
+
+clear screen and reverse video highlight
+
+./onetenth -s esym="   ." syms="   1   2   4   8  10  20  40  80 100 200 400" bl='\n'
+
+RESOURCES
+
+Gabriele Cirulli http://gabrielecirulli.github.io/2048/
+
+Baptiste Fontaine https://github.com/bfontaine/term2048
