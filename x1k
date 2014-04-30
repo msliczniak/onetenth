@@ -26,10 +26,10 @@
 # NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#       @(#)x1k   0.2 (mzs) 4/28/14
+#       @(#)x1k   0.3 (mzs) 4/30/14
 
-SHELL=/bin/sh exec xterm -vb -sl 0 -bg white -fg black -geometry 20x11 \
-  -fn 10x20 -sb -e /bin/sh -c '
+exec xterm -vb -sl 0 +sb -bg white -fg black -geometry 20x11 -fn 10x20 \
+  -T x1k -e /bin/sh -c '
 /usr/bin/tput AB 0 || /usr/bin/tput setab 0
 /usr/bin/clear
 exec "$@"' \

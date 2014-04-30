@@ -26,10 +26,10 @@
 # NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#       @(#)xak   0.2 (mzs) 4/28/14
+#       @(#)xak   0.3 (mzs) 4/30/14
 
-SHELL=/bin/sh exec xterm -vb -bg grey -fg black -geometry 18x31 \
-  -xrm 'XTerm*titeInhibit' -sb -e /bin/sh -c '
+exec xterm -vb -sb -bg grey -fg black -geometry 18x31 \
+   -xrm 'XTerm*titeInhibit' -T xak -e /bin/sh -c '
 /usr/bin/tput AB 0 || /usr/bin/tput setab 0
 /usr/bin/clear
 echo; echo; echo; echo; echo; echo; echo
